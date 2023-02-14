@@ -1,0 +1,74 @@
+
+My First Laravel Project
+
+
+1.	Composer -> installing Node and NPM.  
+
+2.	composer create-project laravel/laravel example-app
+
+3.	cd example-app
+
+4.	php artisan serve
+
+5.	Demo Welcom page layout delet
+
+6.	Include Bootstrap’s CSS and JS 
+
+7.	Navbar add(Under body tag)
+
+8.	Web.php open(Managing Named )
+
+Route::get('/', function () {
+    return view('home');
+})->name('home');
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+Route::get('/service', function () {
+    return view('service');
+})->name('service');
+
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+
+
+7.Views/home.blade.php(Managing Named=>copy and paste all page)
+
+<li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/home">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/service">Service</a>
+        </li>
+
+
+8.Views/home.blade.php(Managing and Named Routes=>Change=>copy and paste all page) 
+
+
+<li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('about')}}">About</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('contact')}}">Contact</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('service')}}">Service</a>
+        </li>
