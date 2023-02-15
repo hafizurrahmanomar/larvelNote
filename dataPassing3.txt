@@ -1,0 +1,80 @@
+//web.php-file
+====================================================
+
+Route::get('/', function () {
+    return view('home',[
+        'page_name' => 'Home page',
+        'course_name' => 'Laravel 10'
+    ]);
+})->name('home');
+
+
+Route::get('/about', function () {
+    return view('about',
+    [
+        'page_name' => 'About page',
+        
+
+]);
+})->name('about');
+
+
+Route::get('/service', function () {
+    
+    $services = [
+        'Web Design',
+        'Web Development',
+        'App Development',
+        'Graphics Design',
+        'Digital Marketing',
+    ];
+
+
+    return view('service', compact('services'));
+})->name('service');
+
+
+Route::get('/contact', function () {
+    
+    $contact='01734731069';
+    return view('contact',compact('contact'));
+})->name('contact');
+
+=================================================================================
+//views/home.php
+
+@extends('master')
+
+@section('content')
+    <h1>{{$page_name}}</h1>
+    <h1>{{$course_name}}</h1>
+@endsection
+
+====================================================================
+/service.php
+
+@extends('master')
+
+@section('content')
+
+@for ($index=0;$index<count($services);$index++)
+        {{ $services[$index] }} <br>
+    @endfor
+
+@endsection
+================================================================
+/contact.php
+
+@extends('master')
+
+@section('content')
+    <h1>{{$contact}}</h1>
+@endsection
+
+/about.php
+================================================================
+@extends('master')
+
+@section('content')
+    <h1>{{$page_name}}</h1>
+@endsection
