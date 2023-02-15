@@ -1,8 +1,8 @@
 
-My First Laravel Project
+First Laravel Project
 
 
-1.	Composer -> installing Node and NPM.  
+1	Composer -> installing Node and NPM.  
 
 2.	composer create-project laravel/laravel example-app
 
@@ -12,7 +12,7 @@ My First Laravel Project
 
 5.	Demo Welcom page layout delet
 
-6.	Include Bootstrap’s CSS and JS 
+6.	Include Bootstrapï¿½s CSS and JS 
 
 7.	Navbar add(Under body tag)
 
