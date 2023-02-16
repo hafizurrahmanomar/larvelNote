@@ -1,0 +1,26 @@
+  
+  ============master.blade.php =============
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   @include('include.style')
+
+   {{--  title create  --}}
+  <title>@yield('title')</title>
+  
+  </head>
+
+
+  ===============home.blade.php =============
+
+  @extends('master')
+
+{{--  title /no used "@endsection" - this code copy and past other pages---}}
+@section('title',"Home")
+
+
+@section('content')
+    <h1>{{$page_name}}</h1>
+    <h1>{{$course_name}}</h1>
+@endsection
