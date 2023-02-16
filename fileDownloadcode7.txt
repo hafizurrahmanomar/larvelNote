@@ -1,0 +1,7 @@
+route/web.php
+=========url/course-content/download ==========
+=====File name=course_content.pdf==============
+=====file must be put in==public folder=========
+Route::get('/course-content/download', function(){
+    return response()->download(public_path('/course_content.pdf'), 'Laravel 9 MasterClass Course Content.pdf');
+});
