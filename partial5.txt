@@ -1,0 +1,157 @@
+partial/product.blade.php?
+===============Code here==========
+
+{{--  if products list empty  than use forelse loop --}}
+
+<ul>     
+  
+    @if ($loop->even)
+    <div class="bg-primary">
+        <li>{{$item}}</li>
+        <li>{{$product['name']}}</li>
+        <li>{{$product['quantity']}}</li>
+        <li>{{$product['price']}}</li>
+    </div>
+@else
+     <div class="bg-secondary">
+        <li>{{$item}}</li>
+        <li>{{$product['name']}}</li>
+        <li>{{$product['quantity']}}</li>
+        <li>{{$product['price']}}</li>
+    </div> 
+@endif
+    </ul>
+    
+
+    =================web.php== code here================
+    // Contact page route
+
+Route::get('/contact', function () {
+    
+
+    $page_name = "Contact Page";
+
+    // Associative Arrays
+    $products=[
+       1 => [
+        'name' => 'Ball',
+        'color' => 'White',
+        'price' => '500',
+       ],
+       2 => [
+        'name' => 'shoes',
+        'color' => 'Black',
+        'price' => '1550',
+       ],
+       3 => [
+        'name' => 'Helmet',
+        'color' => 'Red',
+        'price' => '1850',
+       ],
+    ];
+
+// empty array 
+
+$productsEmpty=[
+
+ ];
+
+
+// fruitLists array
+
+ $fruitList=[
+
+    1 => [
+        'name' => 'Banana',
+        'quantity' => '100',
+        'price' => '500',
+       ],
+       2 => [
+        'name' => 'lemon',
+        'quantity' => '50',
+        'price' => '100',
+       ],
+       3 => [
+        'name' => 'Mango',
+        'quantity' => '100',
+        'price' => '2000',
+       ],
+  
+ ];
+
+
+    $product_count=count($products);
+
+    return view('contact',compact(
+        'page_name',
+        'products',
+        'productsEmpty',
+        'fruitList',
+        'product_count'
+    ));
+})->name('contact');
+
+====contact.blade.php============@include('partial.product')===For code short========
+
+@section('content')
+    <h1>{{$page_name}}</h1>
+
+{{--  PHP foreach Loop  --}}
+@foreach ($products as $item => $product)
+<ul>
+
+{{--  @if ($item==2)
+    @continue     
+@endif  --}}
+
+{{--  @if ($item==1)
+    @break     
+@endif  --}}
+
+
+{{--  @if ($loop->first)
+    @continue     
+@endif  --}}
+
+{{--  @if ($loop->last)
+    @continue     
+@endif  --}}
+
+<li>{{$item}}</li>
+<li>{{$product['name']}}</li>
+<li>{{$product['color']}}</li>
+<li>{{$product['price']}}</li>
+
+</ul>
+    
+@endforeach
+
+
+
+{{--  if products list empty  than use forelse loop --}}
+
+@forelse ($productsEmpty as $item=>$product)
+<ul>     
+    <li>{{$item}}</li>
+    <li>{{$product['name']}}</li>
+    <li>{{$product['color']}}</li>
+    <li>{{$product['price']}}</li>
+    </ul>
+    @include('partial.product')
+@empty
+    <h3>When product list is empty</h3>
+    <p> No product found</p>
+@endforelse
+
+
+{{--  if products list empty or fillUp product  than use forelse loop --}}
+{{--  paritial template used --}}
+
+@forelse ($fruitList as $item=>$product)
+    @include('partial.product')
+@empty
+    <h3>When product list is empty</h3>
+    <p> No product found</p>
+@endforelse
+
+@endsection
