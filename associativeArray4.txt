@@ -1,0 +1,93 @@
+//web.php
+
+=============code here== for contact page==========
+
+/ Contact page route
+
+Route::get('/contact', function () {
+    
+
+    $page_name = "Contact Page";
+    
+    // Associative Arrays
+    $products=[
+       1 => [
+        'name' => 'Ball',
+        'color' => 'White',
+        'price' => '500',
+       ],
+       2 => [
+        'name' => 'shoes',
+        'color' => 'Black',
+        'price' => '1550',
+       ],
+       3 => [
+        'name' => 'Helmet',
+        'color' => 'Red',
+        'price' => '1850',
+       ],
+    ];
+
+    $product_count=count($products);
+
+    return view('contact',compact(
+        'page_name',
+        'products',
+        'product_count'
+    ));
+})->name('contact');
+
+==========contact page here===Used PHP foreach,forelse and conditional arry==============
+@extends('master')
+
+@section('content')
+    <h1>{{$page_name}}</h1>
+
+{{--  PHP foreach Loop  --}}
+@foreach ($products as $item => $product)
+<ul>
+===========conditional code=======================
+{{--  @if ($item==2)
+    @continue     
+@endif  --}}
+
+{{--  @if ($item==1)
+    @break     
+@endif  --}}
+
+
+{{--  @if ($loop->first)
+    @continue     
+@endif  --}}
+
+{{--  @if ($loop->last)
+    @continue     
+@endif  --}}
+==========================================
+<li>{{$item}}</li>
+<li>{{$product['name']}}</li>
+<li>{{$product['color']}}</li>
+<li>{{$product['price']}}</li>
+
+</ul>
+    
+@endforeach
+
+{{--  if products list empty  than use forelse loop --}}
+
+@forelse ($productsEmpty as $item=>$product)
+<ul>     
+    <li>{{$item}}</li>
+    <li>{{$product['name']}}</li>
+    <li>{{$product['color']}}</li>
+    <li>{{$product['price']}}</li>
+    
+    </ul>
+    
+@empty
+    <h3>When product list is empty</h3>
+    <p> No product found</p>
+@endforelse
+
+
+@endsection
