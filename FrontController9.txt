@@ -1,0 +1,203 @@
+// at first terminal code Here
+
+php artisan make:Controllers FrontController
+
+//than  create a controller
+
+
+//=====FrontController.php================//
+
+
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class FrontController extends Controller
+{
+
+    // home-page function and web.php code paste here
+    public function home()
+    {
+        # home-page code here
+
+        return view('home',[
+            'page_name' => 'Home page',
+            'course_name' => 'Laravel 10'
+        ]);
+    }
+
+   // about-page function and web.php code paste here
+   public function about()
+   {
+       #about-page code here
+       return view('about',
+       [
+           'page_name' => 'About page',
+           
+   ]);
+   }
+
+
+
+      // contact-page function and web.php code paste here
+      public function contact()
+      {
+          #contact-page code here
+
+          $page_name = "Contact Page";
+
+          // Associative Arrays
+          $products=[
+             1 => [
+              'name' => 'Ball',
+              'color' => 'White',
+              'price' => '500',
+             ],
+             2 => [
+              'name' => 'shoes',
+              'color' => 'Black',
+              'price' => '1550',
+             ],
+             3 => [
+              'name' => 'Helmet',
+              'color' => 'Red',
+              'price' => '1850',
+             ],
+          ];
+      
+      // empty array 
+      
+      $productsEmpty=[
+      
+       ];
+      
+      
+      // fruitLists array
+      
+       $fruitList=[
+      
+          1 => [
+              'name' => 'Banana',
+              'quantity' => '100',
+              'price' => '500',
+             ],
+             2 => [
+              'name' => 'lemon',
+              'quantity' => '50',
+              'price' => '100',
+             ],
+             3 => [
+              'name' => 'Mango',
+              'quantity' => '100',
+              'price' => '2000',
+             ],
+        
+       ];
+      
+      
+          $product_count=count($products);
+      
+          return view('contact',compact(
+              'page_name',
+              'products',
+              'productsEmpty',
+              'fruitList',
+              'product_count'
+          ));
+        
+      }
+
+
+         // service-page function and web.php code paste here
+
+    public function service()
+    {
+        #  service-page code here
+        $services = [
+            'Web Design',
+            'Web Development',
+            'App Development',
+            'Graphics Design',
+            'Digital Marketing',
+        ];
+    
+    
+        return view('service', compact('services'));
+    }
+
+
+    // sendMeDetails function and web.php code paste here
+    public function sendMeDetails(Request $request)
+    {
+        #send-me-details code here
+
+        $secret_key = 786687;
+        $user_key = $request->user_key;
+
+        $data = [
+            'user_name' => 'Hafizur Rahman omar',
+            'designation' => 'Web Developer',
+            'mobile' => '12345678',
+            'bank_acc' => '124558846355',
+        ];
+
+        if($secret_key == $user_key){
+            return response()->json([
+                'user_info' => $data
+            ]);
+        }else
+        return response([
+            'message' => 'Provide valid secret key'
+        ], 404);
+    }
+}
+
+
+
+//=======web.php code here =====
+
+
+<?php
+
+use Illuminate\Support\Facades\Route;
+//for=> Route::get('/send-me-details', function(Request $request)
+use Illuminate\Http\Request;
+// Must be import below line auto or manually ifi want to FrontController
+use App\Http\Controllers\FrontController;
+
+ 
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+// Home page route
+
+Route::get('/',[FrontController::class,'home'] )->name('home');
+
+// About page route
+
+Route::get('/about',[FrontController::class,'about'])->name('about');
+
+
+Route::get('/service',[FrontController::class,'service'] )->name('service');
+
+
+// Contact page route
+
+Route::get('/contact', [FrontController::class,'contact'])->name('contact');
+
+
+// custom route create and check
+Route::get('/send-me-details',[FrontController::class,'sendMeDetails'] )->name('sendMeDetails');
+
+//Click url // http://127.0.0.1:8000/send-me-details?user_key=786687
