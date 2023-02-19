@@ -1,0 +1,85 @@
+
+//UserInfoController.php file code here
+==========================================
+
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class UserInfoController extends Controller
+{
+    //FrontController.php code copy and past here
+    public function __invoke(Request $request)
+    
+    {
+        #send-me-details code here
+
+        $secret_key = 786687;
+        $user_key = $request->user_key;
+
+        $data = [
+            'user_name' => 'Hafizur Rahman omar',
+            'designation' => 'Web Developer',
+            'mobile' => '12345678',
+            'bank_acc' => '124558846355',
+        ];
+
+        if($secret_key == $user_key){
+            return response()->json([
+                'user_info' => $data
+            ]);
+        }else
+        return response([
+            'message' => 'Provide valid secret key'
+        ], 404);
+    }
+}
+
+
+//web.php file code here
+==========================================
+<?php
+
+use Illuminate\Support\Facades\Route;
+//for=> Route::get('/send-me-details', function(Request $request)
+use Illuminate\Http\Request;
+// Must be import below line auto or manually if i want to  run FrontController
+use App\Http\Controllers\FrontController;
+// Must be import below line auto or manually if i want to  run UserInfoController
+use App\Http\Controllers\UserInfoController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+// Home page route
+
+Route::get('/',[FrontController::class,'home'] )->name('home');
+
+// About page route
+
+Route::get('/about',[FrontController::class,'about'])->name('about');
+
+
+Route::get('/service',[FrontController::class,'service'] )->name('service');
+
+
+// Contact page route
+
+Route::get('/contact', [FrontController::class,'contact'])->name('contact');
+
+
+// custom route create and check
+//UserInfoController.php support
+Route::get('/send-me-details',UserInfoController::class )->name('sendMeDetails');
+
+//Click url // http://127.0.0.1:8000/send-me-details?user_key=786687
