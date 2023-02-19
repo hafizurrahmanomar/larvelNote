@@ -1,0 +1,53 @@
+//===laravelfirst===database create=====
+
+=======Migration=====
+9.   php artisan migrate
+11.  php artisan migrate:status
+11.  php artisan migrate:rollback
+12.  php artisan make:migration add_phone_number_users_table        //new field add command=>php artisan   make:migration add =>than table name=>php artisan migrate  command run
+13. php artisan migrate
+//================================================================
+
+//==database/migration/add_phone_number_users_table/ code here==
+
+
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+       //custom migrations code
+       Schema::table('users', function(Blueprint $table) {
+           
+        $table->string('phone')->unique();
+        
+       });
+       
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        //custom rollback code
+        Schema::table('users', function(Blueprint $table) {
+            $table->dropColumn('phone');
+            
+           });
+    }
+};
+
+

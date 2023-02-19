@@ -1,0 +1,23 @@
+1	Composer -> installing Node and NPM.  
+
+2.	composer create-project laravel/laravel example-app
+
+3.	cd example-app
+
+4.  php artisan serve   //server run
+
+5.  php artisan          //command list
+
+6.  php artisan r:l      // route list
+
+7.  php artisan make:controller PostController -r  //register controller with resource
+
+8.  php artisan make:controller folderName/controllerName -r   // register controller with resource and deferent folder
+
+
+=======Migration=====
+9.   php artisan migrate
+11.  php artisan migrate:status
+11.  php artisan migrate:rollback
+12.  php artisan make:migration add_phone_number_users_table        //new field add command=>php artisan   make:migration add =>than table name=>php artisan migrate  command run
+13. php artisan migrate
