@@ -1,6 +1,6 @@
 
 //UserInfoController.php file code here
-==========================================
+======= create Command: php artisan make:Controller UserInfoController===================================
 
 <?php
 
