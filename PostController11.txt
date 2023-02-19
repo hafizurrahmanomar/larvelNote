@@ -1,0 +1,147 @@
+//Php artisan command line
+//php artisan make:controller PostController -r -> PostController register create
+// php artisan r:l -> route listing
+//================================================================
+
+//PostController.php code Here
+//================================================================
+
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class PostController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return "List Of Posts";
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return "Create Form for Post";
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        return "Store Post in DB";
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return "Single Post";
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        return "Edit Form for Post";
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        return "Update Post in DB";
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        return "Delete Post From DB";
+    }
+}
+
+
+
+
+//web.php code Here
+
+
+<?php
+
+use Illuminate\Support\Facades\Route;
+//for=> Route::get('/send-me-details', function(Request $request)
+use Illuminate\Http\Request;
+// Must be import below line auto or manually if i want to  run FrontController
+use App\Http\Controllers\FrontController;
+// Must be import below line auto or manually if i want to  run PostController
+use App\Http\Controllers\PostController;
+// Must be import below line auto or manually if i want to  run UserInfoController
+use App\Http\Controllers\UserInfoController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+// Home page route
+
+Route::get('/',[FrontController::class,'home'] )->name('home');
+
+// About page route
+
+Route::get('/about',[FrontController::class,'about'])->name('about');
+
+
+Route::get('/service',[FrontController::class,'service'] )->name('service');
+
+
+// Contact page route
+
+Route::get('/contact', [FrontController::class,'contact'])->name('contact');
+
+
+// custom route create and check
+//UserInfoController.php support
+Route::get('/send-me-details',UserInfoController::class )->name('sendMeDetails');
+
+//Click send-me-details url // http://127.0.0.1:8000/send-me-details?user_key=786687
+
+//PostController.php support route create
+Route::resource('/posts',PostController::class);
