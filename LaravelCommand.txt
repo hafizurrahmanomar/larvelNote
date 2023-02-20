@@ -31,3 +31,16 @@
 17.  php artisan make:migration create_publishers_table
 18.  php artisan make:migration create_books_authors_table
 19.  php artisan migrate
+
+
+==========Model with migration file create and updating=======
+
+php artisan make:model Category -m
+
+//this command will create Category model and Category migrate file
+
+php artisan make:model SubCategory -m
+
+//this command will create SubCategory model and SubCategory migrate file
+
+php artisan migrate
