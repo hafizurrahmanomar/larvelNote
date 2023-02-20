@@ -15,9 +15,19 @@
 8.  php artisan make:controller folderName/controllerName -r   // register controller with resource and deferent folder
 
 
-=======Migration=====
+=======Migration and new field add existing migration table =====
 9.   php artisan migrate
 11.  php artisan migrate:status
 11.  php artisan migrate:rollback
 12.  php artisan make:migration add_phone_number_users_table        //new field add command=>php artisan   make:migration add =>than table name=>php artisan migrate  command run
-13. php artisan migrate
+13.  php artisan migrate
+
+
+=======5migrations file create and relationship build up =====
+
+14.  php artisan make:migration create_book_types_table
+15.  php artisan make:migration create_books_table
+16.  php artisan make:migration create_authors_table
+17.  php artisan make:migration create_publishers_table
+18.  php artisan make:migration create_books_authors_table
+19.  php artisan migrate
