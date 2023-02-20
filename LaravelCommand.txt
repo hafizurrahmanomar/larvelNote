@@ -35,12 +35,45 @@
 
 ==========Model with migration file create and updating=======
 
-php artisan make:model Category -m
+20.php artisan make:model Category -m
 
 //this command will create Category model and Category migrate file
 
-php artisan make:model SubCategory -m
+21.php artisan make:model SubCategory -m
 
 //this command will create SubCategory model and SubCategory migrate file
 
-php artisan migrate
+22.php artisan migrate
+
+
+//====Data insert in Category Database== php artisan tinker======
+
+>>>$category=new Category();        //category() object create;
+>>>$category->name="Electronics"    //Electronics category create
+>>>$category->slug="electronics"     //electronics slug create
+>>>$category->save();                // save the category input data
+>>>Category::all()                 // get all categories
+
+
+>>>  $category2=new Category();        //category() object create;
+>>>  $category2->name="Medicine"    //Electronics category create
+>>> $category2->slug="medicine"     //electronics slug create
+>>> $category2->save();                // save the category input data
+>>> Category::all()                 // get all categories
+
+//====Data insert in SubCategory Database== php artisan tinker======
+
+>>> $subcategory=new SubCategory();        //SubCategory() object create;
+>>> $subcategory->category_id=1
+>>> $subcategory->name="Laptop"    //Electronics category create
+>>> $subcategory->slug="laptop"     //electronics slug create
+>>> $subcategory->save();                // save the category input data
+>>> Subcategory::all()                 // get all categories
+
+
+>>> $subcategory2=new SubCategory();        //SubCategory() object create;
+>>> $subcategory2->category_id=2
+>>> $subcategory2->name="Mouse"    //Electronics category create
+>>> $subcategory2->slug="mouse"     //electronics slug create
+>>> $subcategory2->save();                // save the category input data
+>>> Subcategory::all()                 // get all categories
