@@ -46,13 +46,13 @@
 22.php artisan migrate
 
 
-//====Data insert in Category Database== php artisan tinker======
+//====Data insert in Category Database==must be used== php artisan tinker======
 
->>>$category=new Category();        //category() object create;
->>>$category->name="Electronics"    //Electronics category create
->>>$category->slug="electronics"     //electronics slug create
->>>$category->save();                // save the category input data
->>>Category::all()                 // get all categories
+>>> $category=new Category();        //category() object create;
+>>> $category->name="Electronics"    //Electronics category create
+>>> $category->slug="electronics"     //electronics slug create
+>>> $category->save();                // save the category input data
+>>> Category::all()                 // get all categories
 
 
 >>>  $category2=new Category();        //category() object create;
@@ -61,7 +61,7 @@
 >>> $category2->save();                // save the category input data
 >>> Category::all()                 // get all categories
 
-//====Data insert in SubCategory Database== php artisan tinker======
+//====Data insert in SubCategory Database== must be used==php artisan tinker======
 
 >>> $subcategory=new SubCategory();        //SubCategory() object create;
 >>> $subcategory->category_id=1
@@ -77,3 +77,12 @@
 >>> $subcategory2->slug="mouse"     //electronics slug create
 >>> $subcategory2->save();                // save the category input data
 >>> Subcategory::all()                 // get all categories
+
+//====Data find out in Category or SubCategory Database by two command==
+== must be used at first==php artisan tinker= When=>id: 1,=====
+>>> Category::find(1)
+>>> Category::findOrFail(1)
+
+
+>>> SubCategory::find(1)
+>>> SubCategory::findOrFail(1)
