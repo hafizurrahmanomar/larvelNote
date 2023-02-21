@@ -83,6 +83,17 @@
 >>> Category::find(1)
 >>> Category::findOrFail(1)
 
-
+//====Data find object create ($categories) than data find out==
+== must be used at first==php artisan tinker= When=>id: 1,=====
 >>> SubCategory::find(1)
 >>> SubCategory::findOrFail(1)
+
+>>> $categories = category::all();              //get all Category objects create($categories) for data find out
+>>> $categories[0]                              //0,1.2 index of Category
+>>> $categories-> first();                      // first category objects find out
+>>> $categories-> last();                       // last category objects find out
+>>> $categories-> find();                       // individual category objects find out//1,2,3 index number
+>>> $categories-> findOrFail();                 // individual category objects find out //1,2,3 index number
+>>> $categories-> find([1,2]);                  // get data with array
+>>> $categories-> count();                      // collection of total Category objects
+
