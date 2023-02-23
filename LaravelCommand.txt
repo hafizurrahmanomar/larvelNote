@@ -97,3 +97,6 @@
 >>> $categories-> find([1,2]);                  // get data with array
 >>> $categories-> count();                      // collection of total Category objects
 
+//Http/Controller/CategoryController.php===create with resource================
+
+php artisan make:controller CategoryController -r
