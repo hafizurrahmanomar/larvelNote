@@ -1,0 +1,130 @@
+// Forms Markup design
+
+//At first Category resource Controllers create
+//Than resource file create command => php artisan make:controllers CategoryControllers
+
+
+//Than resource file introduce to web.php file//code here
+//==================================================================
+<?php
+
+use App\Http\Controllers\CategoryController;
+use Illuminate\Support\Facades\Route;
+//for=> Route::get('/send-me-details', function(Request $request)
+use Illuminate\Http\Request;
+// Must be import below line auto or manually if i want to  run FrontController
+use App\Http\Controllers\FrontController;
+// Must be import below line auto or manually if i want to  run PostController
+use App\Http\Controllers\PostController;
+// Must be import below line auto or manually if i want to  run UserInfoController
+use App\Http\Controllers\UserInfoController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+// Home page route
+
+Route::get('/',[FrontController::class,'home'] )->name('home');
+
+// About page route
+
+Route::get('/about',[FrontController::class,'about'])->name('about');
+
+
+Route::get('/service',[FrontController::class,'service'] )->name('service');
+
+
+// Contact page route
+
+Route::get('/contact', [FrontController::class,'contact'])->name('contact');
+
+
+// custom route create and check
+//UserInfoController.php support
+Route::get('/send-me-details',UserInfoController::class )->name('sendMeDetails');
+
+//Click send-me-details url // http://127.0.0.1:8000/send-me-details?user_key=786687
+
+
+//PostController.php support route create
+Route::resource('/category',PostController::class);
+
+//CategoryController.php support route create
+Route::resource('/category',CategoryController::class);
+
+//=======================================================
+
+
+//views/category/create.blade.php file create and home.blade.php file copy paste and customize
+
+//content section code Forms bootstraps documentation
+
+//=========================================================
+
+@extends('master')
+
+{{--  title /no used "@endsection" --}}
+@section('title',"create catergory")
+
+
+@section('content')
+
+<div class="row">
+
+    <div class="col-8 m-auto">
+        <form action="">
+            {{-- this code copy form bootstape --}}
+            {{-- Database input --}}
+            <div class="mb-3">
+                <label for="category-name" class="form-label">Category Name</label>
+                <input type="text" class="form-control" id="category-name" placeholder="Category Name inpout here">
+              </div>
+
+
+                {{-- for data slug --}}
+              <div class="mb-3">
+                <label for="category-slug" class="form-label">Category slug</label>
+                <input type="text" class="form-control" id="category-slug" placeholder="Category slug inpout here">
+              </div>
+
+              {{-- checkbox for active or inactive check --}}
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Active/Inactive
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Submit</button>
+
+
+
+
+
+
+        </form>
+    </div>
+</div>
+
+@endsection
+
+
+
+//===============Main part=====================
+
+//CategoryControllers.php code here
+
+
+
+ public function create()
+    {
+        return view('category.create');
+    }
