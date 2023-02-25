@@ -65,7 +65,7 @@ Route::resource('/category',CategoryController::class);
 
 //views/category/create.blade.php file create and home.blade.php file copy paste and customize
 
-//content section code Forms bootstraps documentation
+//content section code Forms bootstraps documentation and customize for data input/output
 
 //=========================================================
 
@@ -80,34 +80,33 @@ Route::resource('/category',CategoryController::class);
 <div class="row">
 
     <div class="col-8 m-auto">
-        <form action="">
+        {{-- Store function of  CategoryController.php than by Post method Data store here and @csrf token must be add --}}
+        <form action="{{ route('category.store') }}" method="POST">
+        @csrf
             {{-- this code copy form bootstape --}}
             {{-- Database input --}}
             <div class="mb-3">
                 <label for="category-name" class="form-label">Category Name</label>
-                <input type="text" class="form-control" id="category-name" placeholder="Category Name inpout here">
+                <input type="text" class="form-control" id="category-name" name="category-name" placeholder="Category Name inpout here">
               </div>
 
 
                 {{-- for data slug --}}
               <div class="mb-3">
                 <label for="category-slug" class="form-label">Category slug</label>
-                <input type="text" class="form-control" id="category-slug" placeholder="Category slug inpout here">
+                <input type="text" class="form-control" id="category-slug" name="category-slug" placeholder="Category slug inpout here">
               </div>
 
               {{-- checkbox for active or inactive check --}}
               <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <input class="form-check-input" type="checkbox" value="" name="is-active" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
                   Active/Inactive
                 </label>
               </div>
 
+
               <button type="submit" class="btn btn-primary">Submit</button>
-
-
-
-
 
 
         </form>
@@ -118,13 +117,101 @@ Route::resource('/category',CategoryController::class);
 
 
 
+
+
+
 //===============Main part=====================
 
 //CategoryControllers.php code here
 
 
+<?php
 
- public function create()
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class CategoryController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
         return view('category.create');
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+       dd($request->all());
+
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+
+    /**
+     */
+    public function __construct() {
+    }
+}
