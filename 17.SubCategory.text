@@ -1,0 +1,11 @@
+1.SubcategoryController.php with resource create and web.php controller support.
+(php artisan make:controller SubcategoryController -r)
+
+
+2.Subcategory Model create
+(php artisan make:model Subcategory)
+
+3. view/Subcategory/create.blade.php file create
+
+4.Request/SubcategoryStoreRequest create for Subcategory data store
+(php artisan make:request SubcategoryStoreRequest)
