@@ -9,3 +9,6 @@
 
 4.Request/SubcategoryStoreRequest create for Subcategory data store
 (php artisan make:request SubcategoryStoreRequest)
+
+=>SubcategoryStoreRequest create.blade.php file add
+=>SubcategoryStoreRequest file Modification code add
